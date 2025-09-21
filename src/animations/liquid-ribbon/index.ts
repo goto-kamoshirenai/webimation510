@@ -1,6 +1,7 @@
 ﻿import type { AnimationDefinition } from "../types";
 import { LiquidRibbonPreview } from "./LiquidRibbonPreview";
 
+// Liquid Ribbon 親エントリ。派生は同ディレクトリ内のサブフォルダで管理する。
 export const liquidRibbonAnimation: AnimationDefinition = {
   slug: "liquid-ribbon",
   title: "Liquid Ribbon",
@@ -15,4 +16,5 @@ export const liquidRibbonAnimation: AnimationDefinition = {
       language: "tsx",
     },
   ],
+  // 親なので parentSlug は設定しない。派生側でこの slug を指定する。
 };

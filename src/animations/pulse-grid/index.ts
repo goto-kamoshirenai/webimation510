@@ -15,4 +15,5 @@ export const pulseGridAnimation: AnimationDefinition = {
       language: "tsx",
     },
   ],
+  // このアニメーションは親として扱うため parentSlug は設定しない。
 };

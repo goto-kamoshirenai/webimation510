@@ -15,6 +15,5 @@ export const liquidRibbonSunsetAnimation: AnimationDefinition = {
       language: "tsx",
     },
   ],
-  parentSlug: "liquid-ribbon",
+  parentSlug: "liquid-ribbon", // 詳細ページで親のLiquid Ribbonと紐付ける。
 };
-

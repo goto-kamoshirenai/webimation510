@@ -15,4 +15,5 @@ export const stellarOrbitsAnimation: AnimationDefinition = {
       language: "tsx",
     },
   ],
+  // Three.js 系のサンプルなので parentSlug は持たない。派生を作る場合は別 slug を用意して parentSlug をこの値に設定。
 };

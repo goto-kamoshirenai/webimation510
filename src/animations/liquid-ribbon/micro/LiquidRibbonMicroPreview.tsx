@@ -1,15 +1,17 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import type { AnimationPreviewProps } from "../../types";
 
+// マイクロインタラクションを意識した短いリボン群。高さは親と同等だがcontentの密度が高い。
 const VARIANT_HEIGHT: Record<NonNullable<AnimationPreviewProps["variant"]>, string> = {
   thumbnail: "h-44",
   modal: "h-80",
   detail: "h-[28rem]",
 };
 
+// 小ぶりなリボンのセット。offsetPercentとheightPercentを調整することで層を詰めたり間隔を空けたりできる。
 const SMALL_RIBBON_CONFIG = [
   {
     gradient: "from-sky-300/80 via-blue-400/70 to-transparent",
@@ -60,6 +62,7 @@ export function LiquidRibbonMicroPreview({
 
     const ribbons = Array.from(element.querySelectorAll<HTMLElement>("[data-ribbon]"));
 
+    // 小さなリズムで呼吸する動き。durationを3以下にすると忙しくなり、視認性が落ちるので3.0〜6.0の間が扱いやすい。
     const tweens = ribbons.map((ribbon, index) =>
       gsap.to(ribbon, {
         xPercent: index % 2 === 0 ? 14 : -18,
@@ -72,6 +75,7 @@ export function LiquidRibbonMicroPreview({
       }),
     );
 
+    // 光量はやや控えめに。0.6より大きくすると小さいリボンが背景に埋もれがち。
     const pulse = gsap.to(element, {
       "--glow": 0.6,
       duration: 4,
@@ -109,6 +113,7 @@ export function LiquidRibbonMicroPreview({
       </div>
       <div className="relative flex h-full items-center justify-center">
         <div className="relative h-[150%] w-[150%]">
+          {/* offsetPercentはtopの位置をそのまま%指定する。値が近すぎるとリボン同士が重なり、色が濁るので5%以上空けるのがおすすめ。 */}
           {SMALL_RIBBON_CONFIG.map((config, index) => (
             <div
               key={index}

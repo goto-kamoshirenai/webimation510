@@ -15,6 +15,5 @@ export const liquidRibbonAuroraAnimation: AnimationDefinition = {
       language: "tsx",
     },
   ],
-  parentSlug: "liquid-ribbon",
+  parentSlug: "liquid-ribbon", // 親アニメーションのスラッグ。詳細ページでパンくず的に表示される。
 };
-

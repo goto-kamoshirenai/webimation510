@@ -15,6 +15,5 @@ export const liquidRibbonMicroAnimation: AnimationDefinition = {
       language: "tsx",
     },
   ],
-  parentSlug: "liquid-ribbon",
+  parentSlug: "liquid-ribbon", // Liquid Ribbonの派生として扱うためのリンク情報。
 };
-

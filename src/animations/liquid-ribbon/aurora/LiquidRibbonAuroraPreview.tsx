@@ -4,13 +4,15 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import type { AnimationPreviewProps } from "../../types";
 
-// オーロラを意識した寒色系とライトトレイル
+// variantによって容器の高さを切り替える。detailを伸ばしすぎると余白が間伸びするので、30rem以内を目安に調整する。
 const VARIANT_HEIGHT: Record<NonNullable<AnimationPreviewProps["variant"]>, string> = {
   thumbnail: "h-44",
   modal: "h-80",
   detail: "h-[28rem]",
 };
 
+// オーロラらしい寒色のリボン設定。
+// gradientやdurationを差し替えることで、より激しい光やゆったりとした動きにアレンジできる。
 const RIBBON_CONFIG = [
   {
     gradient: "from-emerald-300/70 via-sky-400/80 to-blue-900/0",
@@ -44,6 +46,8 @@ export function LiquidRibbonAuroraPreview({
 
     const ribbons = Array.from(element.querySelectorAll<HTMLElement>("[data-ribbon]"));
 
+    // オーロラはゆっくりとランダムにたゆたう表現に寄せる。
+    // 値を大きくすると動きが激しくなるが、±40を超えると画面外に出やすい点に注意。
     const animations = ribbons.map((ribbon, index) =>
       gsap.to(ribbon, {
         xPercent: index % 2 === 0 ? 24 : -28,
@@ -56,6 +60,8 @@ export function LiquidRibbonAuroraPreview({
       }),
     );
 
+    // グロウを強めに設定し、オーロラの発光感を表現。
+    // 1.0を超えると背景のブラーが白飛びするので、0.95程度に抑えると扱いやすい。
     const aura = gsap.to(element, {
       "--glow": 0.95,
       duration: 7,
@@ -77,12 +83,14 @@ export function LiquidRibbonAuroraPreview({
       ref={containerRef}
       className={`relative overflow-hidden rounded-3xl border border-white/10 bg-slate-950/80 ${heightClass} ${className}`}
       style={{
+        // 寒色のラジアルグラデーション。角度や割合をいじると空の広がり方が変わる。
         background:
           "radial-gradient(circle at 20% 20%, rgba(56,189,248,0.28), transparent 60%), radial-gradient(circle at 80% 0%, rgba(16,185,129,0.18), transparent 55%)",
         boxShadow: "0 30px 80px rgba(12,74,110,0.55)",
       }}
     >
       <div className="absolute inset-0" style={{ mixBlendMode: "screen", opacity: 0.85 }}>
+        {/* 背景の光芒。blur値を120pxより小さくすると輪郭が強く残るため、柔らかさを保ちたいときは100px以上を推奨。 */}
         <div
           className="absolute inset-0 blur-[120px] opacity-[var(--glow,0.6)]"
           style={{
@@ -93,6 +101,7 @@ export function LiquidRibbonAuroraPreview({
       </div>
       <div className="relative flex h-full items-center justify-center">
         <div className="relative h-[140%] w-[140%]">
+          {/* RIBBON_CONFIG をもとにしたリボン。派生を作りたい場合は配列を増やし、色バランスを調整するだけで雰囲気が変わる。 */}
           {RIBBON_CONFIG.map((config, index) => (
             <div
               key={index}
@@ -106,4 +115,3 @@ export function LiquidRibbonAuroraPreview({
     </div>
   );
 }
-
