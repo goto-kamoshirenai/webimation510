@@ -5,9 +5,10 @@ import { liquidRibbonSunsetAnimation } from "./liquid-ribbon/sunset";
 import { liquidRibbonMicroAnimation } from "./liquid-ribbon/micro";
 import { pulseGridAnimation } from "./pulse-grid";
 import { stellarOrbitsAnimation } from "./stellar-orbits";
+import { textFlutterAnimation } from "./text-flutter";
 
-// 追加順は関係なく、createdAtで新しいものが先頭になるようソートしている。
-// 派生（parentSlugあり）も含めてここに登録することで、詳細ページ側で親子関係を検索可能にしている。
+// エントリの追加順は任意。createdAt で降順ソートし、最新のものが一覧の先頭に来るようにしている。
+// parentSlug を持つ派生アニメーションも同じ配列に登録し、詳細ページ側で親子関係を検索できるようにする。
 export const animations: AnimationDefinition[] = [
   pulseGridAnimation,
   liquidRibbonAnimation,
@@ -15,9 +16,10 @@ export const animations: AnimationDefinition[] = [
   liquidRibbonSunsetAnimation,
   liquidRibbonMicroAnimation,
   stellarOrbitsAnimation,
+  textFlutterAnimation,
 ].sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1));
 
-// slugベースでアニメーションを検索するヘルパー。派生も同じ配列から取得するため一元管理。
+// slug ベースでアニメーションを検索するヘルパー。派生・親を問わず同じ場所から取得できるように一元化している。
 export function getAnimationBySlug(slug: string) {
   return animations.find((animation) => animation.slug === slug);
 }

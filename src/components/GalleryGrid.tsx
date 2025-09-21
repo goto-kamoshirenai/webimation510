@@ -49,7 +49,7 @@ export function GalleryGrid({ animations }: GalleryGridProps) {
             onClick={() => setActiveSlug(animation.slug)}
             className="group relative flex cursor-pointer flex-col gap-4 rounded-3xl border border-white/10 bg-slate-900/60 p-5 text-left shadow-[0_25px_80px_rgba(15,23,42,0.55)] transition hover:-translate-y-1 hover:border-white/20  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-400"
           >
-            <div className="overflow-hidden rounded-2xl border border-white/10">
+            <div className="overflow-hidden ">
               <animation.preview variant="thumbnail" className="w-full" />
             </div>
             <div className="flex items-center justify-between">
