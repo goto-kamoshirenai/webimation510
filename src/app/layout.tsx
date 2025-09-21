@@ -16,8 +16,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Webimation Library",
-    template: "%s | Webimation Library",
+    default: "webimation510",
+    template: "%s | webimation510",
   },
   description:
     "GSAPとWebGLで制作したモーションスタディを収集したギャラリーサイトです。",
@@ -49,7 +49,7 @@ export default function RootLayout({
           </main>
           <footer className="border-t border-white/10 bg-slate-900/50 text-sm text-slate-400">
             <div className="mx-auto w-full max-w-6xl px-6 py-4">
-              Copyright {year} Webimation Library - 学びと実験を続けよう。
+              Copyright {year} webimation510 - webサイトの動きを探求する。
             </div>
           </footer>
         </div>

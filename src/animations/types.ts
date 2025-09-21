@@ -21,4 +21,5 @@ export interface AnimationDefinition {
   createdAt: string;
   accent: string;
   sourceFiles: AnimationSourceFile[];
+  parentSlug?: string;
 }

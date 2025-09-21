@@ -11,6 +11,11 @@ interface GalleryGridProps {
 export function GalleryGrid({ animations }: GalleryGridProps) {
   const [activeSlug, setActiveSlug] = useState<string | null>(null);
 
+  const visibleAnimations = useMemo(
+    () => animations.filter((animation) => !animation.parentSlug),
+    [animations]
+  );
+
   const activeAnimation = useMemo(
     () => animations.find((animation) => animation.slug === activeSlug) ?? null,
     [activeSlug, animations]
@@ -37,14 +42,14 @@ export function GalleryGrid({ animations }: GalleryGridProps) {
   return (
     <>
       <div id="collection" className="grid gap-8 sm:grid-cols-2 xl:grid-cols-3">
-        {animations.map((animation) => (
+        {visibleAnimations.map((animation) => (
           <button
             type="button"
             key={animation.slug}
             onClick={() => setActiveSlug(animation.slug)}
-            className="group relative cursor-pointer flex flex-col gap-4 rounded-3xl border border-white/10 bg-slate-900/60 p-5 text-left shadow-[0_25px_80px_rgba(15,23,42,0.55)] transition hover:-translate-y-1 hover:border-white/20 hover:shadow-[0_35px_120px_rgba(15,23,42,0.65)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-400"
+            className="group relative flex cursor-pointer flex-col gap-4 rounded-3xl border border-white/10 bg-slate-900/60 p-5 text-left shadow-[0_25px_80px_rgba(15,23,42,0.55)] transition hover:-translate-y-1 hover:border-white/20  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-400"
           >
-            <div className="overflow-hidden ">
+            <div className="overflow-hidden rounded-2xl border border-white/10">
               <animation.preview variant="thumbnail" className="w-full" />
             </div>
             <div className="flex items-center justify-between">
