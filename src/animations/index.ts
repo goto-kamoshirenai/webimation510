@@ -3,6 +3,7 @@ import { liquidRibbonAnimation } from "./liquid-ribbon";
 import { liquidRibbonAuroraAnimation } from "./liquid-ribbon/aurora";
 import { liquidRibbonSunsetAnimation } from "./liquid-ribbon/sunset";
 import { liquidRibbonMicroAnimation } from "./liquid-ribbon/micro";
+import { morrisOrnamentAnimation } from "./morris-ornament";
 import { pulseGridAnimation } from "./pulse-grid";
 import { stellarOrbitsAnimation } from "./stellar-orbits";
 import { textFlutterAnimation } from "./text-flutter";
@@ -22,6 +23,7 @@ export const animations: AnimationDefinition[] = [
   liquidRibbonAuroraAnimation,
   liquidRibbonSunsetAnimation,
   liquidRibbonMicroAnimation,
+  morrisOrnamentAnimation,
   stellarOrbitsAnimation,
   textFlutterAnimation,
   textFlutterNeonAnimation,
